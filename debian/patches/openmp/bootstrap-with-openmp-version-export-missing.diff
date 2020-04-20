@@ -1,0 +1,14 @@
+Index: llvm-toolchain-snapshot_10~+20191020075550+5b8546023f3/openmp/runtime/src/CMakeLists.txt
+===================================================================
+--- llvm-toolchain-snapshot_10~+20191020075550+5b8546023f3.orig/openmp/runtime/src/CMakeLists.txt
++++ llvm-toolchain-snapshot_10~+20191020075550+5b8546023f3/openmp/runtime/src/CMakeLists.txt
+@@ -167,7 +167,8 @@ endif()
+ 
+ # Linking command will include libraries in LIBOMP_CONFIGURED_LIBFLAGS
+ libomp_get_libflags(LIBOMP_CONFIGURED_LIBFLAGS)
+-target_link_libraries(omp ${LIBOMP_CONFIGURED_LIBFLAGS} ${CMAKE_DL_LIBS})
++target_link_libraries(omp ${LIBOMP_CONFIGURED_LIBFLAGS} ${CMAKE_DL_LIBS}
++  "-Wl,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/exports_so.txt")
+ 
+ # Create *.inc before compiling any sources
+ # objects depend on : .inc files
